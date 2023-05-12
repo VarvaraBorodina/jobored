@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Vacancy = () => {
+const Vacancy: React.FC = () => {
     return (<h1>Vacancy</h1>)
 }
 
