@@ -21,8 +21,8 @@ const Header: React.FC = () => {
                 <LogoText>Jobored</LogoText>
             </Logo>
             <Navigator>
-                <NavbarLink to={ROUTE_NAMES.SEARCH_VACANCIES} style={{color: isSearchVacancies? '#5E96FC': '#000'}} >Поиск Вакансий</NavbarLink>
-                <NavbarLink to={ROUTE_NAMES.FAVORITES} style={{color: isFavorites? '#5E96FC': '#000', marginLeft: '60px'}}>Избранное</NavbarLink>
+                <NavbarLink to={ROUTE_NAMES.SEARCH_VACANCIES} $active={isSearchVacancies}>Поиск Вакансий</NavbarLink>
+                <NavbarLink to={ROUTE_NAMES.FAVORITES} $active={isFavorites}>Избранное</NavbarLink>
             </Navigator>
         </Container>
       );

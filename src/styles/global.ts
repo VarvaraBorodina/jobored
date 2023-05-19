@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import "@fontsource/inter";
 
 export default createGlobalStyle`
 * {
@@ -7,8 +8,8 @@ export default createGlobalStyle`
     box-sizing: border-box;
     list-style: none;
     text-decoration: none;
-    font-family: 'Helvetica Neue', sans-serif;
     font-size: 24px;
+    font-family: Inter;
 
     @media (max-width: 540px) {
       font-size: 20px;
@@ -18,4 +19,12 @@ export default createGlobalStyle`
       font-size: 16px;
     }
   }
-`;
+body {
+  background-color: #F5F5F5
+}
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+`

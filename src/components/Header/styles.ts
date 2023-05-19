@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 
 
 import "@fontsource/poppins";
+import "@fontsource/inter";
+import { NavbarLinkProps } from './types';
 
 const Container = styled.div
 `
@@ -10,7 +12,9 @@ display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: center;
+margin-bottom: 40px;
 height: 84px;
+background-color: #FFFFFF
 `
 
 const Logo = styled.div
@@ -21,7 +25,7 @@ position: absolute;
 left: 204px;
 `
 
-const LogoText = styled.p
+const LogoText = styled.h1
 `
 margin-left: 5.78px;
 font-family: Poppins;
@@ -35,17 +39,19 @@ const Navigator = styled.div
 `
 display: flex;
 flex-direction: row;
-align-items: center;
+justify-content: space-between;
+width: 275px;
 `
 
-const NavbarLink = styled(Link)
+const NavbarLink = styled(Link)<NavbarLinkProps>
 `
-
+font-family: Inter;
 font-size: 16px;
-font-weight: 500;
+font-weight: ${props => props.$active ? '500' :  '400'};
 line-height: 20px;
-color: black
-
+color: ${props => props.$active ? '#5E96FC' :  '#232134'};
 `
 
-export { Container, Logo, LogoText, Navigator, NavbarLink }
+
+
+export { Container, Logo, LogoText, Navigator, NavbarLink}

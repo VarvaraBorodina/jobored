@@ -1,9 +1,13 @@
 import React from 'react';
 
+import Filter from '../../components/Filter';
+import { Container } from './styles';
+
 const SearchVacancies: React.FC = () => {
     return (<>
-    <h1>SearchVacancies</h1>
-    <h1>SearchVacancies</h1>
+        <Container>
+            <Filter/>
+        </Container>
     </>)
 }
 
