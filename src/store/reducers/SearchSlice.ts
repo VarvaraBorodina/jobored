@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SalaryInputType } from "../../components/NumberSelector/types";
-import { SearchState, SetValuePayload } from "./types";
+import { SearchState } from "../../types";
+import { SetValuePayload } from "./types";
 
 const initialState:SearchState = {
     from: null,
@@ -9,7 +10,7 @@ const initialState:SearchState = {
     search: ''
 }
 
-const STEP: number = 100;
+const STEP: number = 1000;
 
 export const searchSlice = createSlice({
     name: 'search',

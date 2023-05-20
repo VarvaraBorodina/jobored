@@ -9,4 +9,5 @@ export enum API {
     URL = 'https://startup-summer-2023-proxy.onrender.com/2.0/',
     AUTH_URL = 'oauth2/password/',
     GET_CATEGORIES_URL = 'catalogues/',
+    GET_VACANCIES_URL = 'vacancies/',
   }

@@ -4,6 +4,7 @@ import "@fontsource/poppins";
 
 const Container = styled.div
 `
+width: 773px;
 margin-top: 16px;
 padding: 24px;
 background-color: #FFF;

@@ -6,12 +6,28 @@ import NumberSelector from '../NumberSelector';
 import CrossIcon from '../svg/CrossIcon';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { searchSlice } from '../../store/reducers/SearchSlice';
+import { VacancySlice } from '../../store/reducers/VacancySlice';
+import Service from '../../service';
 
 
 const Filter: React.FC = () => {
-    
-    const { clearFilters } = searchSlice.actions;
     const dispatch = useAppDispatch();
+
+    const { clearFilters } = searchSlice.actions;
+    const { setLoading, setVacancies } = VacancySlice.actions;
+    
+    const searchValue = useAppSelector(state => state.searchReducer);
+
+    const fetchVacancies = async () => {
+        const data = await Service.getVacanciesByParams(searchValue);
+        dispatch(setVacancies(data));
+        dispatch(setLoading(false));
+    }
+
+    const handleSubmit = () => {
+        dispatch(setLoading(true));
+        fetchVacancies();
+    }
 
     const handleClear = () => {
         dispatch(clearFilters());
@@ -31,7 +47,7 @@ const Filter: React.FC = () => {
             <FilterSubTitle>Оклад</FilterSubTitle>
             <NumberSelector type={'from'}/>
             <NumberSelector type={'to'}/>
-            <ApplyButton>Применить</ApplyButton>
+            <ApplyButton onClick={handleSubmit}>Применить</ApplyButton>
         </Container>
       );
 }

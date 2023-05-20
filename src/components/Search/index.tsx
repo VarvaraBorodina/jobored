@@ -4,38 +4,54 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import Service from '../../service';
 import { searchSlice } from '../../store/reducers/SearchSlice';
-import { getFromLocalStorage } from '../../utils/localStorage';
+import { VacancySlice } from '../../store/reducers/VacancySlice';
 
 import SearchIcon from '../svg/SearchIcon';
-import VacancyCard from '../VacancyCard';
+import VacanciesBlock from '../VacanciesBlock';
 import {Container, Button} from './styles'
 
 const Search: React.FC = ()=> {
-    const { setSearchValue } = searchSlice.actions;
     const dispatch = useAppDispatch();
-    const value = useAppSelector(state => state.searchReducer.search);
+
+    const { setSearchValue } = searchSlice.actions;
+    const searchValue = useAppSelector(state => state.searchReducer);
+
+    const { setLoading, setVacancies } = VacancySlice.actions;
+    const isLoading = useAppSelector(state => state.loadingReducer.loading);
+    const vacancies = useAppSelector(state => state.loadingReducer.vacancies);
+
+    const fetchVacancies = async () => {
+        const data = await Service.getVacanciesByParams(searchValue);
+        dispatch(setVacancies(data));
+        dispatch(setLoading(false));
+    }
+
+    useEffect(() => {
+        fetchVacancies();
+    }, [])
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         dispatch(setSearchValue(e.target.value))
     }
 
+    const handleSubmit = () => {
+        dispatch(setLoading(true));
+        fetchVacancies();
+    }
+
     return (
         <Container>
              <Input
-                value={value}
+                value={searchValue.search}
                 onChange={handleOnChange}
                 icon={<SearchIcon/>}
                 placeholder="Введите название вакансии"
-                styles={{input: {width: '773px', height: '48px'}}}
+                styles={{input: {width: '773px', height: '48px', fontSize: '16px', weight: '500', lineHeight: '20px'}}}
                 rightSection={
-                    <Button>Поиск</Button>
+                    <Button onClick={handleSubmit}>Поиск</Button>
                 }
                 />
-            <div>
-                <VacancyCard/>
-                <VacancyCard/>
-                <VacancyCard/>
-            </div>
+                <VacanciesBlock isLoading={isLoading} vacancies={vacancies}/>
         </Container>
     )
 }

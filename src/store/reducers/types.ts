@@ -1,13 +1,12 @@
 import { SalaryInputType } from "../../components/NumberSelector/types";
-
-export interface SearchState {
-    from: number | null,
-    to: number | null,
-    category: number | null,
-    search: string,
-}
+import { Vacancy } from "../../types";
 
 export interface SetValuePayload {
     type: SalaryInputType,
     value: number | null,
+}
+
+export type LoadingType = {
+    loading: boolean,
+    vacancies: Vacancy[],
 }

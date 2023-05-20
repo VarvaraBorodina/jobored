@@ -14,3 +14,34 @@ export type Category = {
     key: number,
     positions: Position[],
 }
+
+export type Town = {
+    title: string,
+    id: number,
+}
+
+export type Type_of_work = {
+    title: string,
+    id: number,
+}
+
+export type Vacancy = {
+    id: number,
+    profession: string,
+    firm_name: string,
+
+    town: Town,
+    type_of_work: Type_of_work,
+
+    payment_to: number,
+    payment_from: number,
+    payment: number,
+    currency: string
+}
+
+export interface SearchState {
+    from: number | null,
+    to: number | null,
+    category: number | null,
+    search: string,
+}
