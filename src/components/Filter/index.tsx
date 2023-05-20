@@ -3,26 +3,34 @@ import React from 'react';
 import { Container, FiltersHeader, Header, ClearButton, ClearText, FilterSubTitle, ApplyButton } from './styles';
 import CategorySelector from '../CategorySelector';
 import NumberSelector from '../NumberSelector';
-import Cross from '../svg/Cross';
+import CrossIcon from '../svg/CrossIcon';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { searchSlice } from '../../store/reducers/SearchSlice';
 
 
 const Filter: React.FC = () => {
+    
+    const { clearFilters } = searchSlice.actions;
+    const dispatch = useAppDispatch();
+
+    const handleClear = () => {
+        dispatch(clearFilters());
+    }
+
     return (
         <Container>
             <FiltersHeader>
                 <Header>Фильтры</Header>
-                <ClearButton>
+                <ClearButton onClick={handleClear}>
                     <ClearText>Сбросить все</ClearText>
-                    <Cross/>
+                    <CrossIcon/>
                 </ClearButton>                
             </FiltersHeader>
             <FilterSubTitle>Отрасль</FilterSubTitle>
             <CategorySelector/>
-
             <FilterSubTitle>Оклад</FilterSubTitle>
-            <NumberSelector placeholder='От'/>
-            <NumberSelector placeholder='До'/>
-
+            <NumberSelector type={'from'}/>
+            <NumberSelector type={'to'}/>
             <ApplyButton>Применить</ApplyButton>
         </Container>
       );

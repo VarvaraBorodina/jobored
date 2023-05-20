@@ -2,56 +2,43 @@ import React, { useState } from 'react';
 import { Container, Input, Buttons, Button } from './styles';
 import SmallDownArrowSvg from '../svg/SmallDownArrowSvg';
 import SmallUpArrowSvg from '../svg/SmallUpArrowSvg';
-import NumberSelectorProps from './types';
+import { NumberSelectorProps } from './types';
+import { searchSlice } from '../../store/reducers/SearchSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
-const NumberSelector: React.FC<NumberSelectorProps> = ({placeholder}) => {
-    const [value, setValue] = useState<number|null>(null);
-    const STEP: number = 10;
+const NumberSelector: React.FC<NumberSelectorProps> = ({type}) => {
+
+    const { increment, decrement, setValue } = searchSlice.actions;
+    const dispatch = useAppDispatch();
+    const value = useAppSelector(state => state.searchReducer[type])
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        
-        if(e.target.value === '' || +e.target.value < 0){
-            setValue(null)
-        } else {
-            setValue(+e.target.value)
-        }
+        let stringValue = e.target.value;
+        const value = parseInt(stringValue);
+        dispatch(setValue({value, type}))
     }
 
-    const onIncrement = (): void => {
-        setValue((prev_value) => {
-            if(prev_value) {
-                return prev_value + STEP;
-            }
-            else {
-                return STEP;
-            }
-        })
+    const onIncreament = ():void => {
+        dispatch(increment(type))
     }
 
-    const onDecrement = (): void => {
-        setValue((prev_value) => {
-            if(prev_value) {
-                const new_value: number = prev_value - STEP;
-                return new_value < 0 ? 0 : new_value;
-            }
-            else {
-                return 0;
-            }
-        })
+    const onDecreament = ():void => {
+        dispatch(decrement(type))
     }
+
 
     return (
         <Container>
             <Input 
             value={value || value === 0? value : ''}
             type="number" 
-            placeholder={placeholder} 
-            onChange={(e) => handleOnChange(e)}/>
+            placeholder={type==='from'? 'От' : 'До'} 
+            onChange={handleOnChange}/>
             <Buttons>
-                <Button onClick={onIncrement}>
+                <Button onClick={onIncreament}>
                     <SmallUpArrowSvg/>
                 </Button>
-                <Button onClick={onDecrement}>
+                <Button onClick={onDecreament}>
                     <SmallDownArrowSvg/>
                 </Button>
             </Buttons>

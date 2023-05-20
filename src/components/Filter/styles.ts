@@ -5,10 +5,13 @@ import "@fontsource/inter";
 const Container = styled.div
 `
 width: 315px;
+height: 365px;
 margin-left: 28px;
 background-color: #FFFFFF;
 border-radius: 12px;
 padding: 20px;
+border: solid 1px;
+border-color: #CED4DA;
 `
 const FiltersHeader = styled.div
 `

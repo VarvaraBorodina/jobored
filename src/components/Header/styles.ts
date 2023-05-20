@@ -1,9 +1,8 @@
 import styled from 'styled-components'
 import {Link} from "react-router-dom";
-
-
 import "@fontsource/poppins";
 import "@fontsource/inter";
+
 import { NavbarLinkProps } from './types';
 
 const Container = styled.div

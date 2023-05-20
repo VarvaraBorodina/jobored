@@ -10,8 +10,8 @@ margin-top: 8px;
 
 background-color: #fff;
 border-radius: 8px;
-border: 2px solid;
-border-color: #D5D6DC;
+border: 1px solid;
+border-color: #CED4DA;
 
 &:hover{
   border-color: #5E96FC;
