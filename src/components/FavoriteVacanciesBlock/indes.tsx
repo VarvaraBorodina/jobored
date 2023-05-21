@@ -39,7 +39,9 @@ const FavoriteVacanciesBlock: React.FC = () => {
                  isFavorite={true} 
                  updateFavorites={updateFavorites} 
                  vacancy={vacancy} 
-                 key={vacancy.id}/>
+                 key={vacancy.id}
+                 main={false}
+                 />
          ) :
          <> 
             <Empty message='Упс, здесь еще ничего нет!'/>

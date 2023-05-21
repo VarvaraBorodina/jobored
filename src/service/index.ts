@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { API } from '../constants/api';
-import { Category, SearchState } from '../types';
+import { Category, FullVacancy, SearchState, Vacancy } from '../types';
 import { addToLocalStorage, getFromLocalStorage } from '../utils/localStorage';
 import queryCreater from '../utils/queryCreater';
 import { AuthParams, VacancyResponse } from './types';
@@ -29,7 +29,6 @@ const Service = {
     getCategories: async () => {
       const accessToken = getFromLocalStorage('access_token');
       const url = `${API.URL}${API.GET_CATEGORIES_URL}`;
-      console.log(url);
 
       const {data} = await axios.get<Category[]>(url, {        
         headers: {
@@ -44,7 +43,7 @@ const Service = {
     getVacanciesByParams: async (searchValues: SearchState) => {
       try {
           const accessToken = getFromLocalStorage('access_token');
-          let url = `${API.URL}${API.GET_VACANCIES_URL}?${queryCreater(searchValues)}`;
+          let url = `${API.URL}${API.GET_VACANCIES_URL}?page=1&${queryCreater(searchValues)}`;
           
           const {data} = await axios.get<VacancyResponse>(url, {        
             headers: {
@@ -52,7 +51,6 @@ const Service = {
               'X-Api-App-Id': API.CLIENT_SECRET,
               'Authorization': `Bearer ${accessToken}`
             }})
-
           return data.objects;
 
        } catch (error) {
@@ -73,6 +71,7 @@ const Service = {
         const accessToken = getFromLocalStorage('access_token');
 
         let url = `${API.URL}${API.GET_VACANCIES_URL}?`;  
+        
         url = ids.reduce((prev_url, id, i) => {
          return (i === ids.length - 1) ? prev_url + `ids[${i}]=${id}`:prev_url + `ids[${i}]=${id}&`;
         }, url)
@@ -92,6 +91,31 @@ const Service = {
           console.log('unexpected error: ', error);
         }
         return [];
+      }
+    },
+
+    getVacancyById: async (id: number) => {
+      try {
+        const accessToken = getFromLocalStorage('access_token');
+
+        let url = `${API.URL}${API.GET_VACANCIES_URL}${id}`;  
+
+        const {data} = await axios.get<FullVacancy>(url, {        
+          headers: {
+            'x-secret-key': API.X_SECRET_KEY,
+            'X-Api-App-Id': API.CLIENT_SECRET,
+            'Authorization': `Bearer ${accessToken}`
+          }})
+        
+        return data;
+
+     } catch (error) {
+        if (axios.isAxiosError(error)) {
+          console.log('error message: ', error.message);
+        } else {
+          console.log('unexpected error: ', error);
+        }
+        return null;
     }
     }
 }

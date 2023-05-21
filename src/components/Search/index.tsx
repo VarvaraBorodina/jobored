@@ -46,7 +46,7 @@ const Search: React.FC = ()=> {
                 onChange={handleOnChange}
                 icon={<SearchIcon/>}
                 placeholder="Введите название вакансии"
-                styles={{input: {width: '773px', height: '48px', fontSize: '16px', weight: '500', lineHeight: '20px'}}}
+                styles={{input: {width: '773px', height: '48px', fontSize: '16px', weight: '500', lineHeight: '20px', borderRadius: '8px'}}}
                 rightSection={
                     <Button onClick={handleSubmit}>Поиск</Button>
                 }

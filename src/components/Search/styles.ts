@@ -7,7 +7,7 @@ margin-left: 28px;
 
 const Button = styled.button
 `
-margin-right: 50px;
+margin-right: 70px;
 padding: 5px 20px;
 border-radius: 8px;
 background-color: #5E96FC;

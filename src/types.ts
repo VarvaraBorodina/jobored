@@ -25,7 +25,7 @@ export type Type_of_work = {
     id: number,
 }
 
-export type Vacancy = {
+export interface Vacancy {
     id: number,
     profession: string,
     firm_name: string,
@@ -37,6 +37,10 @@ export type Vacancy = {
     payment_from: number,
     payment: number,
     currency: string
+}
+
+export interface FullVacancy extends Vacancy {
+    vacancyRichText: string
 }
 
 export interface SearchState {

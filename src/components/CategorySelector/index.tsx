@@ -53,7 +53,7 @@ const CategorySelector: React.FC = () => {
             styles={{ rightSection: { pointerEvents: 'none' }, item: textStyles, input: textStyles }}
             placeholder={isLoading?'Идет загрузка...':'Выберете отрасль'}
             searchable
-            size={"xs"}
+            size={"md"}
             value={String(value)}
             />
         </Container>

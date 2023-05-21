@@ -30,7 +30,9 @@ const VacanciesBlock: React.FC<VacanciesBlockProps> = ({isLoading, vacancies}) =
                  isFavorite={favorites.includes(vacancy.id)} 
                  updateFavorites={updateFavorites} 
                  vacancy={vacancy} 
-                 key={vacancy.id}/>
+                 key={vacancy.id}
+                 main={false}
+                 />
          ) : <Empty message={'Упс, ничего не найдено!'}/>
          }  
         </>           

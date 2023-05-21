@@ -11,12 +11,13 @@ export const Router: React.FC = () => (
         element={<SearchVacancies />}
       />
       <Route
-        path={ROUTE_NAMES.VACANCY}
+        path={`${ROUTE_NAMES.VACANCY}:id`}
         element={<Vacancy />}
       />
       <Route
         path={ROUTE_NAMES.FAVORITES}
         element={<Favorites />}
       />
+      
     </Routes>
   );
