@@ -8,11 +8,18 @@ import VacancyCard from "../VacancyCard";
 import { Button } from "./styles";
 import { Link } from "react-router-dom";
 import { ROUTE_NAMES } from "../../constants/routesNames";
+import Pagination from "../Pagination";
 
 const FavoriteVacanciesBlock: React.FC = () => {
 
     const [isLoading, setLoading] = useState(true);
     const [favoriteVacancies, setFavoriteVacancies] = useState<Vacancy[]>([]);
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const VACANCIES_PER_PAGE = 4;
+    const isVacancyOnPage = (index: number) => {
+        return (index >= VACANCIES_PER_PAGE*currentPage && index < VACANCIES_PER_PAGE*(currentPage+1));
+    }
 
     const fetchVacancies = async () => {
         const favoritesFromLocalStorage = getFavorites();       
@@ -30,19 +37,25 @@ const FavoriteVacanciesBlock: React.FC = () => {
         setFavoriteVacancies(favoriteVacancies.filter((vacancy) => vacancy.id !== key))  
     }
 
+
     return (
         <>
          {isLoading ? <Loader/> :
          favoriteVacancies.length ?
-         favoriteVacancies.map((vacancy) => 
-             <VacancyCard 
-                 isFavorite={true} 
-                 updateFavorites={updateFavorites} 
-                 vacancy={vacancy} 
-                 key={vacancy.id}
-                 main={false}
-                 />
-         ) :
+         <>
+         {
+            favoriteVacancies.filter((vacancy, index) => isVacancyOnPage(index)).map((vacancy) => 
+            <VacancyCard 
+                isFavorite={true} 
+                updateFavorites={updateFavorites} 
+                vacancy={vacancy} 
+                key={vacancy.id}
+                main={false}
+                />
+            )
+         }
+         <Pagination total={favoriteVacancies.length} currentPage={currentPage} setCurrentPage={setCurrentPage}></Pagination>
+         </> :
          <> 
             <Empty message='Упс, здесь еще ничего нет!'/>
             <Button to={ROUTE_NAMES.SEARCH_VACANCIES}>Поиск Вакансий</Button>

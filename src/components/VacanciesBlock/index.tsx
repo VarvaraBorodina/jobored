@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { VacancySlice } from "../../store/reducers/VacancySlice";
 import { addToFavorites, deleteFromFavorites, getFavorites } from "../../utils/localStorage";
 import Empty from "../Empty";
 import Loader from "../Loader";
 import VacancyCard from "../VacancyCard";
-import { VacanciesBlockProps } from "./types"
 
-const VacanciesBlock: React.FC<VacanciesBlockProps> = ({isLoading, vacancies}) => {
+const VacanciesBlock: React.FC= () => {
+    const vacancies = useAppSelector(state => state.vacancyReducer.vacancies);
+
     const [favorites, setFavorites] = useState<number[]>([]);
     
     useEffect(() => {
@@ -23,17 +26,16 @@ const VacanciesBlock: React.FC<VacanciesBlockProps> = ({isLoading, vacancies}) =
 
     return (
         <>
-         {isLoading ? <Loader/> :
-         vacancies.length ?
-         vacancies.map((vacancy) => 
-             <VacancyCard 
-                 isFavorite={favorites.includes(vacancy.id)} 
-                 updateFavorites={updateFavorites} 
-                 vacancy={vacancy} 
-                 key={vacancy.id}
-                 main={false}
-                 />
-         ) : <Empty message={'Упс, ничего не найдено!'}/>
+         {vacancies.length ?  
+             vacancies.map((vacancy) => 
+                <VacancyCard 
+                    isFavorite={favorites.includes(vacancy.id)} 
+                    updateFavorites={updateFavorites} 
+                    vacancy={vacancy} 
+                    key={vacancy.id}
+                    main={false}
+                    />)
+         : <Empty message={'Упс, ничего не найдено!'}/>
          }  
         </>           
     )

@@ -1,10 +1,12 @@
 import {Input} from '@mantine/core';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import Service from '../../service';
 import { searchSlice } from '../../store/reducers/SearchSlice';
 import { VacancySlice } from '../../store/reducers/VacancySlice';
+import Loader from '../Loader';
+import Pagination from '../Pagination';
 
 import SearchIcon from '../svg/SearchIcon';
 import VacanciesBlock from '../VacanciesBlock';
@@ -16,18 +18,20 @@ const Search: React.FC = ()=> {
     const { setSearchValue } = searchSlice.actions;
     const searchValue = useAppSelector(state => state.searchReducer);
 
-    const { setLoading, setVacancies } = VacancySlice.actions;
-    const isLoading = useAppSelector(state => state.loadingReducer.loading);
-    const vacancies = useAppSelector(state => state.loadingReducer.vacancies);
+    const { setLoading, setVacancies, setTotal, setPage } = VacancySlice.actions;
+    const isLoading = useAppSelector(state => state.vacancyReducer.loading);
+    const total = useAppSelector(state => state.vacancyReducer.total);
+    const page = useAppSelector(state => state.vacancyReducer.page);
 
-    const fetchVacancies = async () => {
-        const data = await Service.getVacanciesByParams(searchValue);
-        dispatch(setVacancies(data));
+    const fetchVacancies = async (fetchPage: number) => {
+        const data = await Service.getVacanciesByParams(searchValue, fetchPage);
+        dispatch(setVacancies(data.vacancies));
+        dispatch(setTotal(data.total));
         dispatch(setLoading(false));
     }
 
     useEffect(() => {
-        fetchVacancies();
+        fetchVacancies(0);
     }, [])
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -35,8 +39,15 @@ const Search: React.FC = ()=> {
     }
 
     const handleSubmit = () => {
+        dispatch(setPage(0));
         dispatch(setLoading(true));
-        fetchVacancies();
+        fetchVacancies(0);
+    }
+
+    const setCurrentPage = (newPage: number) => {
+        dispatch(setPage(newPage));
+        dispatch(setLoading(true));
+        fetchVacancies(newPage);
     }
 
     return (
@@ -51,7 +62,11 @@ const Search: React.FC = ()=> {
                     <Button onClick={handleSubmit}>Поиск</Button>
                 }
                 />
-                <VacanciesBlock isLoading={isLoading} vacancies={vacancies}/>
+                {isLoading ? <Loader/> : 
+                <>
+                    <VacanciesBlock/>
+                    <Pagination total={total} currentPage={page} setCurrentPage={setCurrentPage}/>
+                </>}
         </Container>
     )
 }

@@ -9,4 +9,6 @@ export interface SetValuePayload {
 export type LoadingType = {
     loading: boolean,
     vacancies: Vacancy[],
+    total: number,
+    page: number,
 }

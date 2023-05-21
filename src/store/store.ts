@@ -1,9 +1,9 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import searchReducer from './reducers/SearchSlice';
-import loadingReducer from './reducers/VacancySlice';
+import vacancyReducer from './reducers/VacancySlice';
 
 const rootReducer = combineReducers({
-    searchReducer, loadingReducer
+    searchReducer, vacancyReducer
 })
 
 export const setupStore = () => {

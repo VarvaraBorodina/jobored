@@ -14,18 +14,21 @@ const Filter: React.FC = () => {
     const dispatch = useAppDispatch();
 
     const { clearFilters } = searchSlice.actions;
-    const { setLoading, setVacancies } = VacancySlice.actions;
-    
+
+    const { setLoading, setVacancies, setTotal, setPage } = VacancySlice.actions;
     const searchValue = useAppSelector(state => state.searchReducer);
+    const page = useAppSelector(state => state.vacancyReducer.page);
 
     const fetchVacancies = async () => {
-        const data = await Service.getVacanciesByParams(searchValue);
-        dispatch(setVacancies(data));
+        const data = await Service.getVacanciesByParams(searchValue, page);
+        dispatch(setVacancies(data.vacancies));
+        dispatch(setTotal(data.total));
         dispatch(setLoading(false));
     }
 
     const handleSubmit = () => {
         dispatch(setLoading(true));
+        dispatch(setPage(0));
         fetchVacancies();
     }
 
