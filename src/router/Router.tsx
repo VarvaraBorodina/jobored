@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { ROUTE_NAMES } from '../constants/routesNames';
 import Favorites from '../pages/Favorites';
 import SearchVacancies from '../pages/SearchVacancies';

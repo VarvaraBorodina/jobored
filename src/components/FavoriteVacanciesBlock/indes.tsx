@@ -6,7 +6,6 @@ import Empty from "../Empty";
 import Loader from "../Loader";
 import VacancyCard from "../VacancyCard";
 import { Button } from "./styles";
-import { Link } from "react-router-dom";
 import { ROUTE_NAMES } from "../../constants/routesNames";
 import Pagination from "../Pagination";
 

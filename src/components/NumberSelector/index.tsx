@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Input, Buttons, Button } from './styles';
 import SmallDownArrowSvg from '../svg/SmallDownArrowSvg';
 import SmallUpArrowSvg from '../svg/SmallUpArrowSvg';

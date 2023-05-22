@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Container, Button, ButtonArrow } from "./styles";
 import { PaginationProps } from "./types";
 

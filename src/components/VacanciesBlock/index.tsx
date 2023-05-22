@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { VacancySlice } from "../../store/reducers/VacancySlice";
+import { useAppSelector } from "../../hooks/redux";
 import { addToFavorites, deleteFromFavorites, getFavorites } from "../../utils/localStorage";
 import Empty from "../Empty";
-import Loader from "../Loader";
 import VacancyCard from "../VacancyCard";
 
 const VacanciesBlock: React.FC= () => {

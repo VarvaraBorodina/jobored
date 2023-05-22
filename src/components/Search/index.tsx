@@ -1,5 +1,5 @@
 import {Input} from '@mantine/core';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import Service from '../../service';

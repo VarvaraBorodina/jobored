@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 import { API } from '../constants/api';
-import { Category, FullVacancy, SearchState, Vacancy } from '../types';
+import { Category, FullVacancy, SearchState } from '../types';
 import { addToLocalStorage, getFromLocalStorage } from '../utils/localStorage';
 import queryCreater from '../utils/queryCreater';
 import { AuthParams, VacancyResponse } from './types';
