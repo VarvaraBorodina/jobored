@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { COLORS } from '../../constants/colors'
 
 const Container = styled.div
 `
@@ -8,13 +9,16 @@ height: 42px;
 width: 275px;
 margin-top: 8px;
 
-background-color: #fff;
+background-color: ${COLORS.WHITE};
 border-radius: 8px;
 border: 1px solid;
-border-color: #CED4DA;
+border-color: ${COLORS.LIGHT_GREY};
 
 &:hover{
-  border-color: #5E96FC;
+  border-color: ${COLORS.BRIGHT_BLUE};
+};
+@media(max-width: 1100px) {
+  width: 100%;
 }
 
 `
@@ -39,7 +43,6 @@ font-weight: 400;
 line-height: 20px;
 letter-spacing: 0px;
 text-align: left;
-
 `
 
 const Buttons = styled.div

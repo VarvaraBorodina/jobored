@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { COLORS } from "../../constants/colors";
 import { ButtonProps } from "./types";
 
 export const Button = styled.button<ButtonProps>
@@ -20,13 +21,13 @@ height: 32px;
 margin: 8px;
 border-radius: 4px;
 font-size: 14px;
-color: #7B7C88;
-background-color: #FFFFFF;
+color: ${COLORS.BRIGHT_GREY};
+background-color: ${COLORS.WHITE};
 border: 1px solid;
-border-color: #CED4DA;
+border-color: ${COLORS.LIGHT_GREY};
 :disabled,
 [disabled]{
-  color: #D5D6DC;
+  color: ${COLORS.WHITE_GREY};
   cursor: auto;
 }
 `

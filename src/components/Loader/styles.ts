@@ -1,11 +1,12 @@
 import styled from 'styled-components'
+import { COLORS } from '../../constants/colors';
 
 const Container = styled.div
 `
 margin: 0 auto;
 margin-top: 150px;
-border: 16px solid #FFF;
-border-top: 16px solid #5E96FC; 
+border: 16px solid ${COLORS.WHITE};
+border-top: 16px solid ${COLORS.BRIGHT_BLUE}; 
 border-radius: 50%;
 width: 120px;
 height: 120px;

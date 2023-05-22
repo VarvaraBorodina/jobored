@@ -1,1 +1,0 @@
-import { Vacancy } from "../../types"

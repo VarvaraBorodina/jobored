@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { COLORS } from "../../constants/colors";
 
 export const Button = styled(Link)
 `
@@ -13,8 +14,8 @@ border-radius: 8px;
 font-family: 'Open Sans';
 font-style: normal;
 font-weight: 600;
-background: #DEECFF;
+background: ${COLORS.LIGHT_BLUE};
 font-size: 14px;
 line-height: 155%;
-color: #3B7CD3;
+color: ${COLORS.MEDIUM_BLUE};
 `

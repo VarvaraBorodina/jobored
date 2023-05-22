@@ -50,7 +50,7 @@ const Filter: React.FC = () => {
             <FilterSubTitle>Оклад</FilterSubTitle>
             <NumberSelector type={'from'}/>
             <NumberSelector type={'to'}/>
-            <ApplyButton onClick={handleSubmit}>Применить</ApplyButton>
+            <ApplyButton onClick={handleSubmit} data-elem='search-button'>Применить</ApplyButton>
         </Container>
       );
 }

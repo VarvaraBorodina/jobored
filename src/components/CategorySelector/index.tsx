@@ -55,6 +55,7 @@ const CategorySelector: React.FC = () => {
             searchable
             size={"md"}
             value={String(value)}
+            data-elem="industry-select"
             />
         </Container>
       );

@@ -4,16 +4,23 @@ import "@fontsource/poppins";
 import "@fontsource/inter";
 
 import { NavbarLinkProps } from './types';
+import { COLORS } from '../../constants/colors';
 
 const Container = styled.div
 `
+width: 100%;
 display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: center;
 margin-bottom: 40px;
 height: 84px;
-background-color: #FFFFFF
+background-color: ${COLORS.WHITE};
+@media(max-width: 1100px) {
+    width: 100%;
+    flex-direction: column;
+    height: 120px;
+}
 `
 
 const Logo = styled.div
@@ -21,12 +28,17 @@ const Logo = styled.div
 display: flex;
 flex-direction: row;
 position: absolute;
-left: 204px;
+left: 210px;
+@media(max-width: 1100px) {
+    position: static;
+    margin-bottom: 18px;
+    margin-top: 18px;
+}
 `
 
 const LogoText = styled.h1
 `
-margin-left: 5.78px;
+margin-left: 8px;
 font-family: Poppins;
 font-size: 24px;
 font-weight: 600;
@@ -48,7 +60,7 @@ font-family: Inter;
 font-size: 16px;
 font-weight: ${props => props.$active ? '500' :  '400'};
 line-height: 20px;
-color: ${props => props.$active ? '#5E96FC' :  '#232134'};
+color: ${props => props.$active ? COLORS.BRIGHT_BLUE :  COLORS.DARCK_BLUE};
 `
 
 

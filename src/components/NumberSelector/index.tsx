@@ -29,7 +29,8 @@ const NumberSelector: React.FC<NumberSelectorProps> = ({type}) => {
 
     return (
         <Container>
-            <Input 
+            <Input
+            data-elem={type==='from'? 'salary-from-input' : 'salary-to-input'} 
             value={value || value === 0? value : ''}
             type="number" 
             placeholder={type==='from'? 'От' : 'До'} 

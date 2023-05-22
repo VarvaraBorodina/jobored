@@ -25,10 +25,10 @@ const VacancyCard: React.FC<VacancyCardProps> = ({isFavorite, updateFavorites, v
 
     return (
         <ThemeProvider theme={{main}}>
-            <Container onClick={handleOnClick} > 
+            <Container onClick={handleOnClick} data-elem={`vacancy-${vacancy.id}`}> 
                 <Header>
                     <Title >{vacancy.profession}</Title>
-                    <button onClick={handleOnClickStar}><StarIcon isFavorite={isFavorite}/> </button>               
+                    <button onClick={handleOnClickStar} data-elem={`vacancy-${vacancy.id}-shortlist-button`}><StarIcon isFavorite={isFavorite}/> </button>               
                 </Header>
                 <Info >
                     <Salary >{salaryFormater(vacancy)}</Salary>

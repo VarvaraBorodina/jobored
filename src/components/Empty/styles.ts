@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { COLORS } from "../../constants/colors";
 
 export const Container = styled.div
 `
@@ -11,8 +12,9 @@ align-items: center;
 export const Text = styled.p
 `
 margin-top: 39px;
+margin-bottom: 18px;
 font-weight: 700;
 font-size: 24px;
 line-height: 29px;
-color: #343A40;
+color: ${COLORS.DARCK_GREY};
 `
