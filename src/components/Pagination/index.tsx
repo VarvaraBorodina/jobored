@@ -4,7 +4,7 @@ import { PaginationProps } from "./types";
 
 const Pagination: React.FC<PaginationProps>= ({total, currentPage, setCurrentPage}) => {
     const VACANCIES_PER_PAGE = 4;
-    const pageAmount = Math.ceil(total/4);
+    const pageAmount = Math.ceil(total/VACANCIES_PER_PAGE);
 
     const firstPage = (currentPage < pageAmount - 2) ? currentPage : (currentPage < pageAmount - 1 ? currentPage - 1 : currentPage - 2);
 
